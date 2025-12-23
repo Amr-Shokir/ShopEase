@@ -4,50 +4,75 @@
     ViewData["Title"] = "My Account";
 }
 
-<div style="max-width: 1000px; margin: 40px auto; display: flex; gap: 40px;">
+<div style="max-width: 1000px; margin: 40px auto; display: flex; gap: 40px; min-height: 60vh;">
 
-    <div style="flex: 1; background: #f9f9f9; padding: 20px; height: fit-content;">
-        <h2>Hello, @Model.CurrentUser?.FirstName @Model.CurrentUser?.LastName</h2>
-        <p><strong>Email:</strong> @Model.CurrentUser?.Email</p>
+    <div style="flex: 1; background: #fff; padding: 30px; height: fit-content; border: 1px solid #eee; border-radius: 8px;">
+        <h2 style="margin-top:0; font-size: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px; margin-bottom: 20px;">My Details</h2>
 
-        <form method="post" action="/Logout" style="margin-top: 20px;">
-            <button type="submit" style="background: #000; color: white; padding: 10px 20px; border: none; cursor: pointer;">Sign Out</button>
+        <p style="font-size: 14px; margin-bottom: 10px;">
+            <strong>Name:</strong> @Model.CurrentUser?.FirstName @Model.CurrentUser?.LastName
+        </p>
+        <p style="font-size: 14px; margin-bottom: 20px;">
+            <strong>Email:</strong> @Model.CurrentUser?.Email
+        </p>
+
+        <form method="post" action="/Logout">
+            <button type="submit" style="background: #000; color: white; padding: 12px 25px; border: none; cursor: pointer; font-weight: bold; font-size: 13px; text-transform: uppercase;">
+                Sign Out
+            </button>
         </form>
     </div>
 
     <div style="flex: 2;">
-        <h3 style="border-bottom: 2px solid #ddd; padding-bottom: 10px;">My Orders</h3>
+        <h3 style="font-size: 22px; margin-top: 0; margin-bottom: 20px; font-weight: 900; letter-spacing: 0.5px;">MY ORDERS</h3>
 
         @if (Model.OrderHistory == null || !Model.OrderHistory.Any())
         {
-            <p>You haven't placed any orders yet.</p>
+            <div style="padding: 40px; background: #f9f9f9; text-align: center; border-radius: 8px;">
+                <p>You haven't placed any orders yet.</p>
+                <a href="/" style="text-decoration: underline; font-weight: bold;">Start Shopping</a>
+            </div>
         }
         else
         {
             @foreach (var order in Model.OrderHistory)
             {
-                <div style="border: 1px solid #eee; margin-bottom: 20px; padding: 15px;">
-                    <div style="display: flex; justify-content: space-between; background: #f4f4f4; padding: 10px; margin: -15px -15px 15px -15px;">
-                        <span><strong>Order #@order.OrderID</strong></span>
-                        <span>@order.OrderDate.ToShortDateString()</span>
-                        <span>Total: <strong>$@order.TotalAmount</strong></span>
+                <div style="border: 1px solid #e5e5e5; margin-bottom: 30px; border-radius: 8px; overflow: hidden;">
+
+                    <div style="display: flex; justify-content: space-between; background: #f8f8f8; padding: 15px 20px; border-bottom: 1px solid #eee; font-size: 14px;">
+                        <div>
+                            <span style="font-weight: bold; margin-right: 15px;">Order #@order.OrderID</span>
+                            <span style="color: #666;">@order.OrderDate.ToShortDateString()</span>
+                        </div>
+                        <span style="font-weight: bold;">Total: $@order.TotalAmount</span>
                     </div>
 
-                    @foreach (var item in order.OrderItems)
-                    {
-                        <div style="display: flex; gap: 15px; margin-bottom: 10px; align-items: center;">
-                            <div style="width: 50px; height: 60px; background: #ddd;">
-                                @if (item.Product != null)
-                                {
-                                    <img src="@item.Product.CoverImageURL" style="width:100%; height:100%; object-fit:cover;" />
-                                }
+                    <div style="padding: 20px;">
+                        @foreach (var item in order.OrderItems)
+                        {
+                            <div style="display: flex; gap: 20px; margin-bottom: 15px; align-items: center; border-bottom: 1px solid #f9f9f9; padding-bottom: 15px;">
+
+                                <div style="width: 60px; height: 80px; background: #f4f4f4; flex-shrink: 0;">
+                                    @if (item.Product != null)
+                                    {
+                                        <img src="@Model.GetWebImage(item.Product.CoverImageURL)"
+                                             style="width:100%; height:100%; object-fit:cover;" />
+                                    }
+                                </div>
+
+                                <div style="flex: 1;">
+                                    <div style="font-weight: 500; font-size: 14px; margin-bottom: 5px;">@item.Product?.Name</div>
+                                    <div style="color: #666; font-size: 12px;">
+                                        Size: @item.SizeName | Qty: @item.Quantity
+                                    </div>
+                                </div>
+
+                                <div style="font-weight: 600; font-size: 14px;">
+                                    $@item.Price
+                                </div>
                             </div>
-                            <div style="font-size: 14px;">
-                                <div>@item.Product?.Name</div>
-                                <div style="color: #666; font-size: 12px;">Size: @item.SizeName | Qty: @item.Quantity</div>
-                            </div>
-                        </div>
-                    }
+                        }
+                    </div>
                 </div>
             }
         }
