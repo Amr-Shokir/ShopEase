@@ -24,27 +24,34 @@
             </a>
 
             <div class="product-details">
-                <a href="/Details?id=@item.ProductID" class="product-name">@item.Name</a>
+                <div>
+                    <span class="product-category">@item.Category?.Replace("_", " ")</span>
 
-                <div class="price-container">
-                    @if (item.DiscountPrice != null)
-                    {
-                        <div>
+                    <a href="/Details?id=@item.ProductID" class="product-name" title="@item.Name">
+                        @item.Name
+                    </a>
+                </div>
+
+                <div class="card-bottom-row">
+                    <div class="price-container">
+                        @if (item.DiscountPrice != null)
+                        {
                             <span class="original-price">$@item.Price</span>
                             <span class="discount-price">$@item.DiscountPrice</span>
-                        </div>
-                    }
-                    else
-                    {
-                        <span class="current-price">$@item.Price</span>
-                    }
+                        }
+                        else
+                        {
+                            <span class="current-price">$@item.Price</span>
+                        }
+                    </div>
 
-                    <form method="post" asp-page-handler="AddToCart" asp-route-productId="@item.ProductID" style="display:inline;">
+                    <form method="post" asp-page-handler="AddToCart" asp-route-productId="@item.ProductID">
                         <input type="hidden" name="Category" value="@Model.Category" />
                         <input type="hidden" name="SearchString" value="@Model.SearchString" />
                         <input type="hidden" name="CurrentPage" value="@Model.CurrentPage" />
-                        <button type="submit" style="background:none; border:none; padding:0;">
-                            <i class="fa-solid fa-cart-plus cart-icon-small" title="Add to Bag"></i>
+
+                        <button type="submit" class="aesthetic-cart-btn" title="Add to Bag">
+                            <i class="fa-solid fa-bag-shopping"></i>
                         </button>
                     </form>
                 </div>
@@ -60,10 +67,10 @@
            asp-route-CurrentPage="@(Model.CurrentPage - 1)"
            asp-route-Category="@Model.Category"
            asp-route-SearchString="@Model.SearchString"
-           style="padding: 10px 20px; background: #000; color: #fff; font-size: 14px;">PREVIOUS</a>
+           style="padding: 10px 20px; background: #000; color: #fff; font-size: 14px; text-transform:uppercase; font-weight:bold;">Previous</a>
     }
 
-    <span style="padding: 10px 15px; border: 1px solid #ddd;">Page @Model.CurrentPage of @Model.TotalPages</span>
+    <span style="padding: 10px 15px; border: 1px solid #ddd; font-weight:bold;">Page @Model.CurrentPage of @Model.TotalPages</span>
 
     @if (Model.CurrentPage < Model.TotalPages)
     {
@@ -71,6 +78,6 @@
            asp-route-CurrentPage="@(Model.CurrentPage + 1)"
            asp-route-Category="@Model.Category"
            asp-route-SearchString="@Model.SearchString"
-           style="padding: 10px 20px; background: #d01345; color: #fff; font-size: 14px;">NEXT</a>
+           style="padding: 10px 20px; background: #d01345; color: #fff; font-size: 14px; text-transform:uppercase; font-weight:bold;">Next</a>
     }
 </div>

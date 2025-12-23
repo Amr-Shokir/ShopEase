@@ -1,10 +1,15 @@
-/* GLOBAL STYLES */
+/* --- GLOBAL RESET & STYLES --- */
+* {
+    box-sizing: border-box; /* CRITICAL FIX: Ensures padding doesn't increase width */
+}
+
 body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     margin: 0;
     padding: 0;
     color: #000;
-    background-color: #fff;
+    background-color: #fcfcfc;
+    overflow-x: hidden; /* Prevents horizontal scroll */
 }
 
 a {
@@ -27,6 +32,7 @@ header {
     align-items: center;
     justify-content: space-between;
     height: 60px;
+    width: 100%; /* Ensure header takes full width */
 }
 
 .logo {
@@ -81,88 +87,148 @@ header {
 /* SUB-NAV (Category Name) */
 .sub-header {
     text-align: center;
-    padding: 20px 0;
-    border-bottom: 1px solid #eee;
+    padding: 30px 0;
     margin-bottom: 20px;
 }
 
     .sub-header h2 {
-        font-size: 16px;
+        font-size: 24px;
         text-transform: uppercase;
-        font-weight: 600;
+        font-weight: 300;
+        letter-spacing: 2px;
         margin: 0;
     }
 
-/* PRODUCT GRID */
+/* --- PRODUCT GRID --- */
+
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 40px 20px;
+    /* Adjusted minmax to 250px to fit better on standard laptops without scroll */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 30px;
     padding: 0 40px 60px 40px;
     max-width: 1400px;
+    width: 100%; /* Fixes the 'not filling page' issue */
     margin: 0 auto;
 }
 
+/* The Card Box */
 .product-card {
     display: flex;
     flex-direction: column;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: all 0.4s ease;
+    position: relative;
+    border: 1px solid #f0f0f0;
 }
 
+    /* Hover Effect */
+    .product-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+
+/* Image Container */
 .product-image-container {
     position: relative;
     width: 100%;
-    background-color: #f4f4f4;
-    aspect-ratio: 3/4; /* Keeps images vertical rectangle */
+    aspect-ratio: 3/4;
     overflow: hidden;
-    margin-bottom: 15px;
+    background-color: #f4f4f4;
 }
 
+/* The Image itself */
 .product-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.3s ease;
+    transition: transform 0.6s ease;
 }
 
+/* Zoom on Hover */
 .product-card:hover .product-image {
-    transform: scale(1.03);
+    transform: scale(1.05);
 }
 
+/* Details Section */
 .product-details {
-    font-size: 14px;
-    line-height: 1.4;
+    padding: 15px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
 }
 
 .product-name {
     color: #333;
-    margin-bottom: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 5px;
     display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.product-category {
+    font-size: 11px;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+/* Price and Button Row */
+.card-bottom-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
 }
 
 .price-container {
     display: flex;
-    gap: 10px;
-    font-weight: 600;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
 }
 
 .original-price {
     text-decoration: line-through;
-    color: #666;
-    font-size: 13px;
+    color: #999;
+    font-size: 12px;
 }
 
 .current-price {
     color: #000;
+    font-weight: 700;
+    font-size: 16px;
 }
 
 .discount-price {
-    color: #d01345; /* The Red color from your UI */
+    color: #d01345;
+    font-weight: 700;
+    font-size: 16px;
 }
 
-.cart-icon-small {
-    color: #009e7f; /* Green cart icon */
-    font-size: 18px;
+/* Cart Button */
+.aesthetic-cart-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
+    transition: all 0.3s ease;
+    color: #333;
 }
+
+    .aesthetic-cart-btn:hover {
+        background-color: #000;
+        color: #fff;
+        transform: scale(1.1);
+    }
