@@ -4,49 +4,90 @@
     ViewData["Title"] = "My Bag";
 }
 
-<div style="max-width: 1000px; margin: 40px auto; padding: 20px;">
-    <h1 style="text-align:center; font-weight:900; letter-spacing:1px; margin-bottom:40px;">MY BAG</h1>
+<div class="cart-container">
+    <h1 class="page-title">SHOPPING BAG</h1>
 
     @if (Model.CartItems.Count == 0)
     {
-        <p style="text-align:center;">Your bag is empty. <a href="/">Go Shopping</a></p>
+        <div style="text-align:center; margin-top: 50px;">
+            <p style="font-size: 16px; color: #666;">Your bag is currently empty.</p>
+            <a href="/" style="text-decoration: underline; font-weight: bold; color: #000;">Continue Shopping</a>
+        </div>
     }
     else
     {
-        <div style="display: flex; gap: 40px;">
-            <div style="flex: 2;">
+        <div class="cart-layout">
+
+            <div class="cart-items-column">
                 @foreach (var item in Model.CartItems)
                 {
-                    <div style="display: flex; gap: 20px; border-bottom: 1px solid #eee; padding-bottom: 20px; margin-bottom: 20px;">
-                        <div style="width: 100px; height: 130px; background: #f4f4f4;">
-                            <img src="@Model.GetWebImage(item.Product.CoverImageURL)" style="width:100%; height:100%; object-fit:cover;" />
+                    <div class="cart-item-card">
+                        <div class="cart-img-wrapper">
+                            <img src="@Model.GetWebImage(item.Product.CoverImageURL)" alt="@item.Product.Name" />
                         </div>
 
-                        <div style="flex: 1;">
-                            <h4 style="font-size: 14px; margin: 0 0 5px 0;">@item.Product.Name</h4>
-                            <p style="font-size: 12px; color: #666;">Size: @item.SizeName</p>
-                            <p style="font-size: 12px; color: #666;">Qty: @item.Quantity</p>
+                        <div class="cart-details">
+                            <div class="cart-header">
+                                <h4 class="cart-product-name">@item.Product.Name</h4>
+                                <span class="cart-price">$@(item.Product.DiscountPrice ?? item.Product.Price)</span>
+                            </div>
 
-                            <form method="post" asp-page-handler="Remove" asp-route-id="@item.CartItemID">
-                                <button type="submit" style="background:none; border:none; color:#999; font-size:12px; cursor:pointer; padding:0; text-decoration:underline;">Remove</button>
-                            </form>
-                        </div>
+                            <p class="cart-meta">Size: @item.SizeName</p>
 
-                        <div style="font-weight: 600;">
-                            $@(item.Product.DiscountPrice ?? item.Product.Price)
+                            <div class="cart-actions-row">
+
+                                <form method="post" asp-page-handler="UpdateQuantity" class="qty-selector-form">
+                                    <input type="hidden" name="id" value="@item.CartItemID" />
+
+                                    <button type="submit" name="change" value="-1" class="qty-btn-small">
+                                        <i class="fa-solid fa-minus"></i>
+                                    </button>
+
+                                    <span class="qty-display-text">@item.Quantity</span>
+
+                                    <button type="submit" name="change" value="1" class="qty-btn-small">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </button>
+                                </form>
+
+                                <form method="post" asp-page-handler="Remove" asp-route-id="@item.CartItemID">
+                                    <button type="submit" class="remove-link">REMOVE</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 }
             </div>
 
-            <div style="flex: 1; background: #f9f9f9; padding: 20px; height: fit-content;">
-                <h3 style="font-size: 16px; margin-top:0;">TOTAL</h3>
-                <div style="display: flex; justify-content: space-between; margin-bottom: 20px; font-weight: bold;">
-                    <span>Sub-total</span>
-                    <span>$@Model.TotalPrice</span>
+            <div class="cart-summary-column">
+                <div class="summary-card">
+                    <h3>TOTAL</h3>
+
+                    <div class="summary-row">
+                        <span>Sub-total</span>
+                        <span>$@Model.SubTotal</span>
+                    </div>
+
+                    <div class="summary-row">
+                        <span>Delivery</span>
+                        <span>$@Model.Shipping</span>
+                    </div>
+
+                    <div class="summary-divider"></div>
+
+                    <div class="summary-row total-row">
+                        <span>Total</span>
+                        <span>$@Model.TotalPrice</span>
+                    </div>
+
+                    <a href="/Checkout" class="checkout-btn">CHECKOUT</a>
+
+                    <div class="secure-checkout">
+                        <i class="fa-solid fa-lock"></i> Secure Checkout
+                    </div>
                 </div>
-                <a href="/Checkout" style="display:block; text-align:center; width: 100%; background-color: #009e7f; color: white; padding: 15px; border: none; font-weight: bold; cursor: pointer; text-decoration:none;">CHECKOUT</a>
             </div>
+
         </div>
     }
 </div>
