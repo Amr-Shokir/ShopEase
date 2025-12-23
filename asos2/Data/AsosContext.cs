@@ -12,7 +12,10 @@ namespace IsisStore.Data
         public DbSet<CartItem> CartItems { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
-        public DbSet<User> Users { get; set; } // <--- Added this
+        public DbSet<User> Users { get; set; }
+
+        // CHANGED: Linked to your existing Addresses table
+        public DbSet<Address> Addresses { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -21,7 +24,10 @@ namespace IsisStore.Data
             modelBuilder.Entity<CartItem>().ToTable("CartItems");
             modelBuilder.Entity<Order>().ToTable("Orders");
             modelBuilder.Entity<OrderItem>().ToTable("OrderItems");
-            modelBuilder.Entity<User>().ToTable("Users"); // <--- Maps to your existing table
+            modelBuilder.Entity<User>().ToTable("Users");
+
+            // EXACT MATCH: Tells C# to look for the table named "Addresses" in SQL
+            modelBuilder.Entity<Address>().ToTable("Addresses");
         }
     }
 }

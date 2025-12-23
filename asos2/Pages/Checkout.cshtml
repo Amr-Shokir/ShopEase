@@ -4,70 +4,125 @@
     ViewData["Title"] = "Checkout";
 }
 
-<div style="max-width: 1100px; margin: 40px auto; padding: 20px;">
+<style>
+    .address-selection-grid {
+        display: grid;
+        gap: 15px;
+        margin-bottom: 20px;
+    }
 
+    .address-option-label {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.2s;
+        background: #fff;
+    }
+
+    .address-radio:checked + .address-content {
+        font-weight: bold;
+    }
+
+    .address-option-label:has(.address-radio:checked) {
+        border-color: #000;
+        background-color: #fcfcfc;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .new-address-area {
+        margin-top: 15px;
+        padding-left: 5px;
+    }
+</style>
+
+<div style="max-width: 1100px; margin: 40px auto; padding: 20px;">
     <div asp-validation-summary="All" style="color:red; margin-bottom:20px;"></div>
 
     <form method="post">
+        <div style="display: flex; gap: 60px; flex-wrap: wrap;">
 
-        <div style="display: flex; gap: 60px;">
+            <div style="flex: 2; min-width: 300px;">
+                <h2 style="font-weight: 400; font-size: 24px; margin-bottom: 30px; border-bottom: 1px solid #eee; padding-bottom: 15px;">CHECKOUT DETAILS</h2>
 
-            <div style="flex: 2;">
-                <h2 style="font-weight: 400; font-size: 24px; margin-bottom: 30px;">Billing Details</h2>
-
-                <div style="margin-bottom: 20px;">
-                    <label style="display:block; font-size:12px; color:#666; margin-bottom:5px;">First Name *</label>
-                    <input asp-for="Order.FirstName" style="width:100%; padding:10px; background:#f9f9f9; border:none;" required />
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                    <div>
+                        <label style="display:block; font-size:12px; color:#666; margin-bottom:5px;">First Name *</label>
+                        <input asp-for="Order.FirstName" style="width:100%; padding:12px; background:#f9f9f9; border:1px solid #eee; border-radius: 4px;" required />
+                    </div>
+                    <div>
+                        <label style="display:block; font-size:12px; color:#666; margin-bottom:5px;">Last Name *</label>
+                        <input asp-for="Order.LastName" style="width:100%; padding:12px; background:#f9f9f9; border:1px solid #eee; border-radius: 4px;" required />
+                    </div>
                 </div>
-
-                <div style="margin-bottom: 20px;">
-                    <label style="display:block; font-size:12px; color:#666; margin-bottom:5px;">Last Name *</label>
-                    <input asp-for="Order.LastName" style="width:100%; padding:10px; background:#f9f9f9; border:none;" required />
-                </div>
-
-                <div style="margin-bottom: 20px;">
+                <div style="margin-bottom: 30px;">
                     <label style="display:block; font-size:12px; color:#666; margin-bottom:5px;">Email Address *</label>
-                    <input asp-for="Order.Email" type="email" style="width:100%; padding:10px; background:#f9f9f9; border:none;" required />
+                    <input asp-for="Order.Email" type="email" style="width:100%; padding:12px; background:#f9f9f9; border:1px solid #eee; border-radius: 4px;" required />
                 </div>
 
                 <div style="margin-bottom: 30px;">
-                    <label style="display:block; font-size:12px; color:#666; margin-bottom:5px;">Address *</label>
-                    <input asp-for="Order.Address" style="width:100%; padding:10px; background:#f9f9f9; border:none;" required />
+                    <label style="display:block; font-size:12px; color:#666; margin-bottom:10px; font-weight:bold; letter-spacing:1px;">DELIVERY ADDRESS</label>
+
+                    @if (Model.SavedAddresses.Any())
+                    {
+                        <div class="address-selection-grid">
+                            @foreach (var addr in Model.SavedAddresses)
+                            {
+                                <label class="address-option-label">
+                                    <input type="radio" name="SelectedAddressID" value="@addr.AddressID" class="address-radio" onchange="toggleNewAddress(false)" />
+
+                                    <span class="address-content">
+                                        <strong>@addr.AddressTitle:</strong> @addr.AddressLine1, @addr.City
+                                    </span>
+                                </label>
+                            }
+
+                            <label class="address-option-label">
+                                <input type="radio" name="SelectedAddressID" value="0" class="address-radio" onchange="toggleNewAddress(true)" />
+                                <span class="address-content" style="color: #0077cc;">+ Add a new address</span>
+                            </label>
+                        </div>
+                    }
+
+                    <div id="newAddressContainer" class="new-address-area" style="@(Model.SavedAddresses.Any() ? "display:none;" : "")">
+                        <label style="display:block; font-size:12px; color:#666; margin-bottom:5px;">Enter New Address *</label>
+                        <input asp-for="Order.Address" id="OrderAddressInput" style="width:100%; padding:12px; background:#fff; border:1px solid #ccc; border-radius: 4px;" placeholder="Street, City, Country..." />
+                    </div>
                 </div>
             </div>
 
-            <div style="flex: 1;">
-                <div style="padding: 20px; border: 1px solid #fff;">
-                    <h3 style="margin-top:0;">Your Order</h3>
-
+            <div style="flex: 1; min-width: 300px;">
+                <div style="padding: 25px; background: #fcfcfc; border: 1px solid #eee; border-radius: 8px;">
+                    <h3 style="margin-top:0; font-size: 18px; margin-bottom: 20px;">Your Order</h3>
                     <div style="margin-top: 20px; font-size: 14px;">
                         @if (Model.CartItems != null)
                         {
                             @foreach (var item in Model.CartItems)
                             {
-                                <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
-                                    <span>@item.Product.Name <span style="color:#999;">x @item.Quantity</span></span>
-                                    <span>$@((item.Product.DiscountPrice ?? item.Product.Price) * item.Quantity)</span>
+                                <div style="display:flex; justify-content:space-between; margin-bottom:15px; border-bottom: 1px solid #f0f0f0; padding-bottom: 10px;">
+                                    <div style="display:flex; flex-direction:column;">
+                                        <span style="font-weight:500;">@item.Product.Name</span>
+                                        <span style="color:#999; font-size: 12px;">Size: @item.SizeName | x @item.Quantity</span>
+                                    </div>
+                                    <span style="font-weight:600;">$@((item.Product.DiscountPrice ?? item.Product.Price) * item.Quantity)</span>
                                 </div>
                             }
                         }
                     </div>
-
-                    <div style="border-top: 1px solid #eee; margin: 20px 0; padding-top: 20px;">
-                        <div style="display:flex; justify-content:space-between; font-weight:bold; font-size:18px;">
+                    <div style="margin: 20px 0; padding-top: 20px;">
+                        <div style="display:flex; justify-content:space-between; font-weight:900; font-size:20px;">
                             <span>Total</span>
                             <span>$@Model.TotalPrice</span>
                         </div>
                     </div>
-
-                    <div style="margin-bottom: 20px;">
-                        <label>
-                            <input type="radio" checked /> Cash on delivery
-                        </label>
+                    <div style="margin-bottom: 20px; background: #e8f5e9; padding: 10px; border-radius: 4px; font-size: 13px;">
+                        <i class="fa-solid fa-money-bill"></i> Cash on delivery
                     </div>
-
-                    <button type="submit" style="width:100%; background-color: #008000; color:white; padding:12px; border:none; border-radius:4px; font-weight:bold; cursor:pointer;">
-                        Place Order
+                    <button type="submit" style="width:100%; background-color: #000; color:white; padding:15px; border:none; border-radius:4px; font-weight:bold; cursor:pointer; font-size: 16px; letter-spacing: 1px;">
+                        PLACE ORDER
                     </button>
                 </div>
             </div>
@@ -75,3 +130,21 @@
         </div>
     </form>
 </div>
+
+@section Scripts {
+    <script>
+        function toggleNewAddress(show) {
+            var container = document.getElementById('newAddressContainer');
+            var input = document.getElementById('OrderAddressInput');
+
+            if (show) {
+                container.style.display = 'block';
+                input.required = true;
+            } else {
+                container.style.display = 'none';
+                input.required = false;
+                input.value = '';
+            }
+        }
+    </script>
+}
