@@ -1,0 +1,13 @@
+# Build Folders
+[Bb]in/
+[Oo]bj/
+
+# Visual Studio cache
+.vs/
+
+# User specific files
+*.user
+*.suo
+
+# Environment specific settings (Optional but recommended)
+appsettings.Development.json

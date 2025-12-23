@@ -1,0 +1,52 @@
+﻿@page
+@model IsisStore.Pages.CartModel
+@{
+    ViewData["Title"] = "My Bag";
+}
+
+<div style="max-width: 1000px; margin: 40px auto; padding: 20px;">
+    <h1 style="text-align:center; font-weight:900; letter-spacing:1px; margin-bottom:40px;">MY BAG</h1>
+
+    @if (Model.CartItems.Count == 0)
+    {
+        <p style="text-align:center;">Your bag is empty. <a href="/">Go Shopping</a></p>
+    }
+    else
+    {
+        <div style="display: flex; gap: 40px;">
+            <div style="flex: 2;">
+                @foreach (var item in Model.CartItems)
+                {
+                    <div style="display: flex; gap: 20px; border-bottom: 1px solid #eee; padding-bottom: 20px; margin-bottom: 20px;">
+                        <div style="width: 100px; height: 130px; background: #f4f4f4;">
+                            <img src="@Model.GetWebImage(item.Product.CoverImageURL)" style="width:100%; height:100%; object-fit:cover;" />
+                        </div>
+
+                        <div style="flex: 1;">
+                            <h4 style="font-size: 14px; margin: 0 0 5px 0;">@item.Product.Name</h4>
+                            <p style="font-size: 12px; color: #666;">Size: @item.SizeName</p>
+                            <p style="font-size: 12px; color: #666;">Qty: @item.Quantity</p>
+
+                            <form method="post" asp-page-handler="Remove" asp-route-id="@item.CartItemID">
+                                <button type="submit" style="background:none; border:none; color:#999; font-size:12px; cursor:pointer; padding:0; text-decoration:underline;">Remove</button>
+                            </form>
+                        </div>
+
+                        <div style="font-weight: 600;">
+                            $@(item.Product.DiscountPrice ?? item.Product.Price)
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <div style="flex: 1; background: #f9f9f9; padding: 20px; height: fit-content;">
+                <h3 style="font-size: 16px; margin-top:0;">TOTAL</h3>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 20px; font-weight: bold;">
+                    <span>Sub-total</span>
+                    <span>$@Model.TotalPrice</span>
+                </div>
+                <a href="/Checkout" style="display:block; text-align:center; width: 100%; background-color: #009e7f; color: white; padding: 15px; border: none; font-weight: bold; cursor: pointer; text-decoration:none;">CHECKOUT</a>
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ISIS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <a href="/" class="logo">ISIS</a>
+
+        <div class="search-container">
+            <form method="get" action="/">
+                <input type="text" name="SearchString" class="search-input" placeholder="Search for items and brands" value="@Context.Request.Query["SearchString"]">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            </form>
+        </div>
+
+        <div class="header-actions">
+            @if (User.Identity.IsAuthenticated)
+            {
+                <a href="/Profile" class="icon-btn" title="My Profile">
+                    <i class="fa-solid fa-user"></i>
+                </a>
+
+                <form method="post" asp-page="/Logout" style="display:inline;">
+                    <button type="submit" class="icon-btn" title="Sign Out" style="background:none; border:none; padding:0; cursor:pointer;">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </button>
+                </form>
+            }
+            else
+            {
+                <a href="/Login" class="icon-btn" title="Sign In">
+                    <span style="font-size: 14px; font-weight: bold; margin-right: 5px;">LOGIN</span>
+                    <i class="fa-regular fa-user"></i>
+                </a>
+            }
+
+            <a href="/Cart" class="icon-btn"><i class="fa-solid fa-cart-shopping"></i></a>
+        </div>href="/Cart" class="icon-btn"><i class="fa-solid fa-cart-shopping"></i></a>
+        </div>
+    </header>
+
+    <div style="background-color: #f8f8f8; border-bottom: 1px solid #ddd; padding: 10px 0;">
+        <div style="display: flex; justify-content: center; gap: 20px; font-size: 13px; font-weight: 600; text-transform: uppercase;">
+            <a href="/?category=jackets_coats" style="color: #333;">Jackets</a>
+            <a href="/?category=hoodies_sweatshirts" style="color: #333;">Hoodies</a>
+            <a href="/?category=t-shirts_vests" style="color: #333;">T-Shirts</a>
+            <a href="/?category=pants" style="color: #333;">Pants</a>
+            <a href="/?category=shorts" style="color: #333;">Shorts</a>
+            <a href="/?category=shoes" style="color: #333;">Shoes</a>
+            <a href="/?category=wallets" style="color: #333;">Wallets</a>
+            <a href="/?category=socks" style="color: #333;">Socks</a>
+            <a href="/" style="color: #d01345;">View All</a>
+        </div>
+    </div>
+
+
+
+
+    <main role="main">
+        @RenderBody()
+    </main>
+
+    <footer style="background-color: #2d2d2d; color: #bbb; padding: 40px 0; margin-top: 60px; font-size: 12px;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 40px; display: flex; justify-content: space-between;">
+
+            <div>
+                <h4 style="color: #fff; margin-bottom: 15px; text-transform: uppercase;">Help & Information</h4>
+                <ul style="line-height: 2;">
+                    <li>Help</li>
+                    <li>Track Order</li>
+                    <li>Delivery & Returns</li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 style="color: #fff; margin-bottom: 15px; text-transform: uppercase;">About ISIS</h4>
+                <ul style="line-height: 2;">
+                    <li>About Us</li>
+                    <li>Careers at ISIS</li>
+                    <li>Corporate Responsibility</li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 style="color: #fff; margin-bottom: 15px; text-transform: uppercase;">More From Us</h4>
+                <ul style="line-height: 2;">
+                    <li>Mobile and Asos Apps</li>
+                    <li>Gift Vouchers</li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 style="color: #fff; margin-bottom: 15px; text-transform: uppercase;">Shopping From</h4>
+                <p>You're in <strong>Global</strong></p>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px; border-top: 1px solid #444; padding-top: 20px;">
+            &copy; 2025 ISIS Store. Privacy & Cookies | Ts&Cs
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

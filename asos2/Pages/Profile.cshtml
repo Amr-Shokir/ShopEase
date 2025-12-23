@@ -1,0 +1,55 @@
+﻿@page
+@model IsisStore.Pages.ProfileModel
+@{
+    ViewData["Title"] = "My Account";
+}
+
+<div style="max-width: 1000px; margin: 40px auto; display: flex; gap: 40px;">
+
+    <div style="flex: 1; background: #f9f9f9; padding: 20px; height: fit-content;">
+        <h2>Hello, @Model.CurrentUser?.FirstName @Model.CurrentUser?.LastName</h2>
+        <p><strong>Email:</strong> @Model.CurrentUser?.Email</p>
+
+        <form method="post" action="/Logout" style="margin-top: 20px;">
+            <button type="submit" style="background: #000; color: white; padding: 10px 20px; border: none; cursor: pointer;">Sign Out</button>
+        </form>
+    </div>
+
+    <div style="flex: 2;">
+        <h3 style="border-bottom: 2px solid #ddd; padding-bottom: 10px;">My Orders</h3>
+
+        @if (Model.OrderHistory == null || !Model.OrderHistory.Any())
+        {
+            <p>You haven't placed any orders yet.</p>
+        }
+        else
+        {
+            @foreach (var order in Model.OrderHistory)
+            {
+                <div style="border: 1px solid #eee; margin-bottom: 20px; padding: 15px;">
+                    <div style="display: flex; justify-content: space-between; background: #f4f4f4; padding: 10px; margin: -15px -15px 15px -15px;">
+                        <span><strong>Order #@order.OrderID</strong></span>
+                        <span>@order.OrderDate.ToShortDateString()</span>
+                        <span>Total: <strong>$@order.TotalAmount</strong></span>
+                    </div>
+
+                    @foreach (var item in order.OrderItems)
+                    {
+                        <div style="display: flex; gap: 15px; margin-bottom: 10px; align-items: center;">
+                            <div style="width: 50px; height: 60px; background: #ddd;">
+                                @if (item.Product != null)
+                                {
+                                    <img src="@item.Product.CoverImageURL" style="width:100%; height:100%; object-fit:cover;" />
+                                }
+                            </div>
+                            <div style="font-size: 14px;">
+                                <div>@item.Product?.Name</div>
+                                <div style="color: #666; font-size: 12px;">Size: @item.SizeName | Qty: @item.Quantity</div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+        }
+    </div>
+</div>

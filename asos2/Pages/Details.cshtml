@@ -1,0 +1,125 @@
+﻿@page
+@model IsisStore.Pages.DetailsModel
+@{
+    ViewData["Title"] = Model.Product.Name;
+}
+
+<style>
+    /* Wrapper for the counter */
+    .quantity-wrapper {
+        display: flex;
+        align-items: center;
+        border: 1px solid #ddd;
+        width: fit-content;
+        margin-top: 10px;
+    }
+
+    /* The input field itself */
+    .qty-input {
+        width: 50px;
+        text-align: center;
+        border: none;
+        font-weight: bold;
+        font-size: 16px;
+        outline: none;
+        /* Hide default browser spinners */
+        -moz-appearance: textfield;
+    }
+        /* Hide spinners in Webkit (Chrome/Safari) */
+        .qty-input::-webkit-outer-spin-button,
+        .qty-input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+    /* The Plus/Minus buttons */
+    .qty-btn {
+        background: white;
+        border: none;
+        padding: 10px 15px;
+        cursor: pointer;
+        font-size: 14px;
+        color: #333;
+        transition: background 0.2s;
+    }
+
+        .qty-btn:hover {
+            background-color: #f0f0f0;
+            color: #000;
+        }
+</style>
+
+<div style="max-width: 1000px; margin: 40px auto; padding: 20px; display: flex; gap: 50px;">
+
+    <div style="flex: 1;">
+        <img src="@Model.GetWebImage(Model.Product.CoverImageURL)" style="width: 100%; object-fit: cover;" />
+    </div>
+
+    <div style="flex: 1;">
+        <h1 style="font-size: 24px; font-weight: 400; line-height: 1.4;">@Model.Product.Name</h1>
+
+        <div style="margin: 20px 0; font-size: 20px; font-weight: bold;">
+            @if (Model.Product.DiscountPrice != null)
+            {
+                <span style="text-decoration: line-through; color: #666; font-size: 16px; margin-right: 10px;">$@Model.Product.Price</span>
+                <span style="color: #d01345;">$@Model.Product.DiscountPrice</span>
+            }
+            else
+            {
+                <span>$@Model.Product.Price</span>
+            }
+        </div>
+
+        <div style="margin-bottom: 30px; line-height: 1.6; color: #555;">
+            <p>@Model.Product.Description</p>
+        </div>
+
+        <form method="post" asp-page-handler="AddToCart" asp-route-productId="@Model.Product.ProductID">
+
+            <div style="margin-bottom: 25px;">
+                <label style="font-weight:bold; font-size:12px; letter-spacing:1px; display:block; margin-bottom:5px;">QUANTITY</label>
+
+                <div class="quantity-wrapper">
+                    <button type="button" class="qty-btn" onclick="decreaseQty()">
+                        <i class="fa-solid fa-minus"></i>
+                    </button>
+
+                    <input type="number" id="qtyInput" name="quantity" value="1" min="1" max="10" class="qty-input" readonly />
+
+                    <button type="button" class="qty-btn" onclick="increaseQty()">
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+
+            <button type="submit" style="width: 100%; background-color: #008000; color: white; padding: 15px; border: none; font-weight: bold; text-transform: uppercase; cursor: pointer; letter-spacing: 1px;">
+                Add to Bag
+            </button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // JavaScript to handle the Plus/Minus logic
+        function increaseQty() {
+            var input = document.getElementById('qtyInput');
+            var currentValue = parseInt(input.value);
+            var max = parseInt(input.max);
+
+            if (currentValue < max) {
+                input.value = currentValue + 1;
+            }
+        }
+
+        function decreaseQty() {
+            var input = document.getElementById('qtyInput');
+            var currentValue = parseInt(input.value);
+            var min = parseInt(input.min);
+
+            if (currentValue > min) {
+                input.value = currentValue - 1;
+            }
+        }
+    </script>
+}
