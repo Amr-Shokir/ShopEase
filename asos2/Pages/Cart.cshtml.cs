@@ -33,10 +33,8 @@ namespace IsisStore.Pages
                     .Where(c => c.CartID == cartId)
                     .ToListAsync();
 
-                // Calculate Totals
                 SubTotal = CartItems.Sum(item => (item.Product.DiscountPrice ?? item.Product.Price) * item.Quantity);
 
-                // Free shipping if cart is empty, otherwise flat rate
                 Shipping = CartItems.Any() ? 10.00m : 0m;
 
                 TotalPrice = SubTotal + Shipping;
@@ -58,7 +56,6 @@ namespace IsisStore.Pages
             return RedirectToPage();
         }
 
-        // NEW: Handles increasing or decreasing quantity
         public async Task<IActionResult> OnPostUpdateQuantityAsync(int id, int change)
         {
             var item = await _context.CartItems.FindAsync(id);
@@ -66,10 +63,8 @@ namespace IsisStore.Pages
             {
                 item.Quantity += change;
 
-                // Ensure quantity never drops below 1
                 if (item.Quantity < 1) item.Quantity = 1;
 
-                // Optional: You could check stock limits here
 
                 await _context.SaveChangesAsync();
             }

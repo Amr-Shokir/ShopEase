@@ -19,7 +19,6 @@ namespace IsisStore.Pages
         [BindProperty]
         public Order Order { get; set; }
 
-        // CHANGED: Now using your Address model
         public List<Address> SavedAddresses { get; set; } = new List<Address>();
 
         [BindProperty]
@@ -58,7 +57,6 @@ namespace IsisStore.Pages
                         };
                     }
 
-                    // FETCH from your existing 'Addresses' table
                     SavedAddresses = await _context.Addresses
                         .Where(a => a.UserID == userId)
                         .ToListAsync();
@@ -74,13 +72,11 @@ namespace IsisStore.Pages
             ModelState.Remove("Order.TotalAmount");
             ModelState.Remove("Order.OrderItems");
 
-            // LOGIC: Handle Address Selection
             if (SelectedAddressID > 0)
             {
                 var existingAddr = await _context.Addresses.FindAsync(SelectedAddressID);
                 if (existingAddr != null)
                 {
-                    // Combine your columns into one string for the Order Address
                     Order.Address = $"{existingAddr.AddressLine1}, {existingAddr.City}, {existingAddr.State}";
                     ModelState.Remove("Order.Address");
                 }
@@ -103,14 +99,11 @@ namespace IsisStore.Pages
                 return Page();
             }
 
-            // === SAVE NEW ADDRESS LOGIC ===
-            // If user typed a new address, save it to your table
             if (SelectedAddressID == 0 && User.Identity.IsAuthenticated)
             {
                 var userIdString = User.FindFirst("UserID")?.Value;
                 if (int.TryParse(userIdString, out int uid))
                 {
-                    // Basic check to avoid duplicates based on Line1
                     bool exists = await _context.Addresses
                         .AnyAsync(a => a.UserID == uid && a.AddressLine1 == Order.Address);
 
@@ -119,9 +112,9 @@ namespace IsisStore.Pages
                         _context.Addresses.Add(new Address
                         {
                             UserID = uid,
-                            AddressTitle = "New Address", // Default title
-                            AddressLine1 = Order.Address, // We save the whole input here
-                            City = "Unknown", // Placeholder since form doesn't ask for city
+                            AddressTitle = "New Address", 
+                            AddressLine1 = Order.Address, 
+                            City = "Unknown", 
                             State = "Unknown",
                             ZipCode = "00000",
                             IsDefault = false

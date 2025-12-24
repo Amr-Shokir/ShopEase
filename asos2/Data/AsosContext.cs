@@ -13,8 +13,6 @@ namespace IsisStore.Data
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<User> Users { get; set; }
-
-        // CHANGED: Linked to your existing Addresses table
         public DbSet<Address> Addresses { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -25,8 +23,6 @@ namespace IsisStore.Data
             modelBuilder.Entity<Order>().ToTable("Orders");
             modelBuilder.Entity<OrderItem>().ToTable("OrderItems");
             modelBuilder.Entity<User>().ToTable("Users");
-
-            // EXACT MATCH: Tells C# to look for the table named "Addresses" in SQL
             modelBuilder.Entity<Address>().ToTable("Addresses");
         }
     }

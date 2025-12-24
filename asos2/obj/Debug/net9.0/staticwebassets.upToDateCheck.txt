@@ -1,0 +1,165 @@
+wwwroot\css\site.css
+wwwroot\favicon.ico
+wwwroot\images\hoodies_sweatshirts\21\1of21.jpg
+wwwroot\images\hoodies_sweatshirts\22\1of22.jpg
+wwwroot\images\hoodies_sweatshirts\23\1of23.jpg
+wwwroot\images\hoodies_sweatshirts\24\1of24.jpg
+wwwroot\images\hoodies_sweatshirts\25\1of25.jpg
+wwwroot\images\jackets_coats\1\1of1.jpg
+wwwroot\images\jackets_coats\2\1of2.jpg
+wwwroot\images\jackets_coats\3\1of3.jpg
+wwwroot\images\jackets_coats\4\1of4.jpg
+wwwroot\images\jackets_coats\5\1of5.jpg
+wwwroot\images\pants\16\1of16.jpg
+wwwroot\images\pants\17\1of17.jpg
+wwwroot\images\pants\18\1of18.jpg
+wwwroot\images\pants\19\1of19.jpg
+wwwroot\images\pants\20\1of20.jpg
+wwwroot\images\shoes\11\1of11.jpg
+wwwroot\images\shoes\12\1of12.jpg
+wwwroot\images\shoes\13\1of13.jpg
+wwwroot\images\shoes\14\1of14.jpg
+wwwroot\images\shoes\15\1of15.jpg
+wwwroot\images\shorts\31\1of31.jpg
+wwwroot\images\shorts\32\1of32.jpg
+wwwroot\images\shorts\33\1of33.jpg
+wwwroot\images\shorts\34\1of34.jpg
+wwwroot\images\shorts\35\1of35.jpg
+wwwroot\images\socks\36\1of36.jpg
+wwwroot\images\socks\37\1of37.jpg
+wwwroot\images\socks\38\1of38.jpg
+wwwroot\images\socks\39\1of39.jpg
+wwwroot\images\socks\40\1of40.jpg
+wwwroot\images\t-shirts_vests\26\1of26.jpg
+wwwroot\images\t-shirts_vests\27\1of27.jpg
+wwwroot\images\t-shirts_vests\28\1of28.jpg
+wwwroot\images\t-shirts_vests\29\1of29.jpg
+wwwroot\images\t-shirts_vests\30\1of30.jpg
+wwwroot\images\wallets\10\1of10.jpg
+wwwroot\images\wallets\6\1of6.jpg
+wwwroot\images\wallets\7\1of7.jpg
+wwwroot\images\wallets\8\1of8.jpg
+wwwroot\images\wallets\9\1of9.jpg
+wwwroot\js\site.js
+wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap.css
+wwwroot\lib\bootstrap\dist\css\bootstrap.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap.min.css
+wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css
+wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css
+wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css.map
+wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js
+wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js.map
+wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js
+wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map
+wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js
+wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js.map
+wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js
+wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js.map
+wwwroot\lib\bootstrap\dist\js\bootstrap.js
+wwwroot\lib\bootstrap\dist\js\bootstrap.js.map
+wwwroot\lib\bootstrap\dist\js\bootstrap.min.js
+wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map
+wwwroot\lib\bootstrap\LICENSE
+wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.js
+wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.min.js
+wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt
+wwwroot\lib\jquery-validation\dist\additional-methods.js
+wwwroot\lib\jquery-validation\dist\additional-methods.min.js
+wwwroot\lib\jquery-validation\dist\jquery.validate.js
+wwwroot\lib\jquery-validation\dist\jquery.validate.min.js
+wwwroot\lib\jquery-validation\LICENSE.md
+wwwroot\lib\jquery\dist\jquery.js
+wwwroot\lib\jquery\dist\jquery.min.js
+wwwroot\lib\jquery\dist\jquery.min.map
+wwwroot\lib\jquery\dist\jquery.slim.js
+wwwroot\lib\jquery\dist\jquery.slim.min.js
+wwwroot\lib\jquery\dist\jquery.slim.min.map
+wwwroot\lib\jquery\LICENSE.txt
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\css\site.css
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\favicon.ico
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\js\site.js
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css.map
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css.map
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css.map
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css.map
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css.map
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css.map
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css.map
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css.map
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css.map
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css.map
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css.map
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\lib\bootstrap\dist\css\bootstrap.css
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\lib\bootstrap\dist\css\bootstrap.css.map
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css.map
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css.map
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js.map
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js.map
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js.map
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\lib\bootstrap\dist\js\bootstrap.js
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\lib\bootstrap\dist\js\bootstrap.js.map
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.js
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.min.js
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\lib\jquery-validation\dist\additional-methods.js
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\lib\jquery-validation\dist\additional-methods.min.js
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\lib\jquery-validation\dist\jquery.validate.js
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\lib\jquery-validation\dist\jquery.validate.min.js
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\lib\jquery-validation\LICENSE.md
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\lib\jquery\dist\jquery.js
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\lib\jquery\dist\jquery.min.js
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\lib\jquery\dist\jquery.min.map
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\lib\jquery\dist\jquery.slim.js
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\lib\jquery\dist\jquery.slim.min.js
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\lib\jquery\dist\jquery.slim.min.map
+D:\important\c202\project\final phase\asos2\asos2\wwwroot\lib\jquery\LICENSE.txt

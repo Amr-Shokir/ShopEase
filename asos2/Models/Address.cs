@@ -10,7 +10,7 @@ namespace IsisStore.Models
 
         public int UserID { get; set; }
 
-        public string? AddressTitle { get; set; } // e.g. "Home", "Work"
+        public string? AddressTitle { get; set; } 
 
         public string? AddressLine1 { get; set; }
 

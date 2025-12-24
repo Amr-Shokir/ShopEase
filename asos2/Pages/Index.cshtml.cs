@@ -31,23 +31,17 @@ namespace IsisStore.Pages
 
         public async Task OnGetAsync()
         {
-            // 1. Start with all products
             var query = _context.Products.AsQueryable();
 
-            // 2. Filter by Category (Strict filter, usually clicked from menu)
             if (!string.IsNullOrEmpty(Category))
             {
                 query = query.Where(p => p.Category == Category);
             }
 
-            // 3. Fetch data into memory
-            // We fetch all items here to perform the advanced "Smart Search" algorithm in C#
-            // For a massive database (100k+ items), you would use SQL Full-Text Search or Azure Search instead.
             var allProducts = await query.ToListAsync();
 
             List<Product> filteredProducts = allProducts;
 
-            // 4. "Smart Search" Logic
             if (!string.IsNullOrEmpty(SearchString))
             {
                 string searchTerm = SearchString.ToLower().Trim();
@@ -58,13 +52,12 @@ namespace IsisStore.Pages
                         Product = p,
                         Score = CalculateRelevanceScore(p, searchTerm)
                     })
-                    .Where(x => x.Score > 0) // Only keep items with some relevance
-                    .OrderByDescending(x => x.Score) // Best matches first
+                    .Where(x => x.Score > 0) 
+                    .OrderByDescending(x => x.Score) 
                     .Select(x => x.Product)
                     .ToList();
             }
 
-            // 5. Pagination (Applied in memory now)
             int totalItems = filteredProducts.Count;
             TotalPages = (int)Math.Ceiling(totalItems / (double)PageSize);
 
@@ -108,7 +101,7 @@ namespace IsisStore.Pages
                     CartID = cartId,
                     ProductID = productId,
                     Quantity = 1,
-                    SizeName = "M" // Default size
+                    SizeName = "M" 
                 };
                 _context.CartItems.Add(cartItem);
             }
@@ -127,9 +120,7 @@ namespace IsisStore.Pages
             return localPath;
         }
 
-        // --- SMART SEARCH HELPERS ---
 
-        // Calculates how relevant a product is to the search term
         private int CalculateRelevanceScore(Product p, string searchTerm)
         {
             int score = 0;
@@ -137,20 +128,14 @@ namespace IsisStore.Pages
             string desc = p.Description?.ToLower() ?? "";
             string cat = p.Category?.ToLower() ?? "";
 
-            // 1. Exact Name Match (Highest Priority)
             if (name == searchTerm) score += 100;
 
-            // 2. Name Contains the search term
             else if (name.Contains(searchTerm)) score += 50;
 
-            // 3. Category Contains search term
             if (cat.Contains(searchTerm)) score += 30;
 
-            // 4. Description Contains search term
             if (desc.Contains(searchTerm)) score += 10;
 
-            // 5. Fuzzy Match (Typos) - Only if no strong matches found yet
-            // We split the search string into words (e.g., "blue jaket" -> "blue", "jaket")
             var searchWords = searchTerm.Split(' ');
             var productWords = (name + " " + cat).Split(' ');
 
@@ -158,7 +143,6 @@ namespace IsisStore.Pages
             {
                 foreach (var pWord in productWords)
                 {
-                    // If the word is very similar (Levenshtein distance <= 2)
                     if (ComputeLevenshteinDistance(sWord, pWord) <= 2)
                     {
                         score += 15;
@@ -169,7 +153,6 @@ namespace IsisStore.Pages
             return score;
         }
 
-        // Standard Algorithm to calculate the number of edits between two strings
         private static int ComputeLevenshteinDistance(string s, string t)
         {
             if (string.IsNullOrEmpty(s)) return string.IsNullOrEmpty(t) ? 0 : t.Length;

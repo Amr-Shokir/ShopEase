@@ -11,12 +11,11 @@ namespace IsisStore.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            // 1. Drop the old/broken Order tables so we can recreate them correctly
-            // We use SQL directly to ensure they are gone before creating the new ones.
+
             migrationBuilder.Sql("DROP TABLE IF EXISTS OrderItems");
             migrationBuilder.Sql("DROP TABLE IF EXISTS Orders");
 
-            // 2. Create the Orders table (New Version with Address, TotalAmount, etc.)
+
             migrationBuilder.CreateTable(
                 name: "Orders",
                 columns: table => new
@@ -36,7 +35,7 @@ namespace IsisStore.Migrations
                     table.PrimaryKey("PK_Orders", x => x.OrderID);
                 });
 
-            // 3. Create the OrderItems table
+
             migrationBuilder.CreateTable(
                 name: "OrderItems",
                 columns: table => new
@@ -66,7 +65,7 @@ namespace IsisStore.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            // 4. Create Indexes for the new tables
+
             migrationBuilder.CreateIndex(
                 name: "IX_OrderItems_OrderID",
                 table: "OrderItems",
@@ -77,8 +76,7 @@ namespace IsisStore.Migrations
                 table: "OrderItems",
                 column: "ProductID");
 
-            // NOTE: We REMOVED the code that creates Products, Users, CartItems, and ProductSizes.
-            // This prevents the "Table already exists" error and protects your data.
+
         }
 
         /// <inheritdoc />

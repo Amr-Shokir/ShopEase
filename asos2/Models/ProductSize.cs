@@ -11,7 +11,7 @@ namespace IsisStore.Models
         public Product Product { get; set; }
 
         [Required]
-        public string SizeName { get; set; } // e.g., 'XS', 'L', 'EU 42'
+        public string SizeName { get; set; } 
 
         public int StockQuantity { get; set; }
     }
